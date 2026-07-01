@@ -312,11 +312,13 @@ def send_rich_message(
         payload['message_thread_id'] = message_thread_id
     return _make_request(token, method_url, params=payload, method='post') 
 
-def send_rich_message_draft(token, chat_id, draft_id, rich_message, message_thread_id=None):
+def send_rich_message_draft(token, chat_id, draft_id, rich_message, message_thread_id=None, business_connection_id=None):
     method_url = r'sendRichMessageDraft'
     payload = {'chat_id': str(chat_id), 'draft_id': draft_id, 'rich_message': rich_message.to_json()}
     if message_thread_id is not None:
         payload['message_thread_id'] = message_thread_id
+    if business_connection_id is not None:
+        payload['business_connection_id'] = business_connection_id
     return _make_request(token, method_url, params=payload, method='post')
 
 

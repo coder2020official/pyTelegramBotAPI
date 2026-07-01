@@ -360,11 +360,13 @@ async def send_rich_message(
     
     return await _process_request(token, method_url, params=payload, method='post')
 
-async def send_rich_message_draft(token, chat_id, draft_id, rich_message, message_thread_id=None):
+async def send_rich_message_draft(token, chat_id, draft_id, rich_message, message_thread_id=None, business_connection_id=None):
     method_url = r'sendRichMessageDraft'
     payload = {'chat_id': chat_id, 'draft_id': draft_id, 'rich_message': rich_message.to_json()}
     if message_thread_id is not None:
         payload['message_thread_id'] = message_thread_id
+    if business_connection_id is not None:
+        payload['business_connection_id'] = business_connection_id
     return await _process_request(token, method_url, params=payload, method='post')
 
 
